@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Clone source from Github') {
+        stage('Get Github Project') {
             steps {
                 git branch: 'main',
                 url: 'https://github.com/AlexandruVas/java-hello-world.git'
@@ -15,7 +15,7 @@ pipeline {
                 echo "Branch has been copied"  
             }
         }
-        stage('Maven Build') {
+        stage('Build') {
             tools{
                 jdk 'JDK8'
             }
