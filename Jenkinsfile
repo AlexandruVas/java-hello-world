@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone source from Github') {
             steps {
-                git branch: 'master',
+                git branch: 'main',
                 url: 'https://github.com/AlexandruVas/java-hello-world.git'
                 checkout scm  
             }
