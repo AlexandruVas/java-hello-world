@@ -4,7 +4,6 @@ pipeline {
         maven 'Maven'
         jdk 'JDK11'
         jdk 'JDK8'
-        SonarQube 'SonarQube'
     }
 
     stages {
