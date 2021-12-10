@@ -32,7 +32,7 @@ pipeline {
         } 
         steps {
         withSonarQubeEnv(installationName: 'SonarQube') {
-            sh 'mvn sonar:sonar -Dsonar.projectname=java-hello-world -Dsonar.host.url=https://172.19.15.166:9000 -Dsonar.login=1d8ac99a0c6c8bafa712dbc05b4dd2b9a0bcbc79'
+            sh 'mvn sonar:sonar -Dsonar.projectname=java-hello-world -Dsonar.host.url=http://172.19.15.166:9000 -Dsonar.login=1d8ac99a0c6c8bafa712dbc05b4dd2b9a0bcbc79'
             }   
         }
 
