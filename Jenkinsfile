@@ -4,6 +4,7 @@ pipeline {
         maven 'Maven'
         jdk 'JDK11'
         jdk 'JDK8'
+        SonarQube 'SonarQube'
     }
 
     stages {
@@ -28,7 +29,7 @@ pipeline {
                 jdk 'JDK11'
             }
         environment {
-            scannerHome = tool 'SonarQube Scanner'
+            scannerHome = tool 'SonarQube'
         } 
         steps {
         withSonarQubeEnv(installationName: 'SonarQube') {
