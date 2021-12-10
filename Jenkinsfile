@@ -2,6 +2,8 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
+        jdk 'JDK11'
+        jdk 'JDK8'
     }
 
     stages {
@@ -9,15 +11,16 @@ pipeline {
             steps {
                 git branch: 'main',
                 url: 'https://github.com/AlexandruVas/java-hello-world.git'
-                checkout scm  
+                checkout scm
+                echo "Branch has been copied"  
             }
         }
         stage('Maven Build') {
             tools{
-                jdk 'JDK11'
+                jdk 'JDK8'
             }
             steps {
-                sh 'mvn install'
+                sh 'mvn clean package'
             }
         }
         stage('SonarQube') {
@@ -29,16 +32,7 @@ pipeline {
         } 
         steps {
         withSonarQubeEnv(installationName: 'SonarQube') {
-            sh 'mvn sonar:sonar ' +
-                '-Dsonar.host.url=http://localhost:9000 ' +
-                // '-Dsonar.sources=. ' +
-                '-Dsonar.projectKey=project_test ' +
-                '-Dsonar.login=2df3a596d45070ec4b31610f967b24c4ca9af2d8 ' +
-                // '-Dsonar.java.binaries=. ' +
-                // '-DskipTests=true' +
-                // '-Dsonar.cfamily.build-wrapper-output=bw-output ' +
-                '-Dsonar.projectName=project_test ' +
-                '-Dsonar.projectVersion=$BUILD_NUMBER'
+            sh 'mvn test sonar:sonar -Dsonar.projectname=java-hello-world -Dsonar.host.url=https://172.19.15.166:9000 -Dsonar.login=1d8ac99a0c6c8bafa712dbc05b4dd2b9a0bcbc79'
             }   
         }
 
